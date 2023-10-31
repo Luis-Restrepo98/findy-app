@@ -17,7 +17,7 @@ import { createUser } from '../../services/userService';
 const Register = () => {
   const navigate = useNavigate();
 
-  const backToLogin = () => navigate('/');
+  const backToLogin = () => navigate('/login');
 
   const schema = object({
     name: string().min(2).required('required field'),

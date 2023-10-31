@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserByEmailAndPassword } from '../../services/userService';
+import { AppContext } from '../../routes/Router';
 import { sweetAlert } from '../../utils/alerts';
 
 import {
@@ -17,6 +18,10 @@ import './login.scss';
 const Login = () => {
   const navigate = useNavigate();
 
+  const {
+    userLogged: { userLogged, userLoggedDispatch },
+  } = useContext(AppContext);
+
   const schema = object({
     email: string().email().required('required field'),
     password: string().min(4).required('required field'),
@@ -24,11 +29,20 @@ const Login = () => {
 
   const findUser = async values => {
     const userFound = await getUserByEmailAndPassword(
-      values.email,
-      values.password
+      values.email.trim(),
+      values.password.trim()
     );
 
     if (userFound) {
+      const action = {
+        type: 'LOGIN',
+        payload: {
+          isAuthenticated: true,
+          user: userFound,
+        },
+      };
+      userLoggedDispatch(action);
+      console.log('From Login:', userLogged);
       sweetAlert('success', `Welcome back ${userFound.name}`);
     } else {
       sweetAlert('error', 'Wrong credentials');
