@@ -10,6 +10,7 @@ import userLoggedReducer, {
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './publicRoutes';
 import Prueba from '../pages/prueba/Prueba';
+import StatusBar from '../components/statusBar/StatusBar';
 
 export const AppContext = createContext({});
 
@@ -31,7 +32,8 @@ const Router = () => {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-            <Route
+            <Route path='/' element={<StatusBar />} />
+            {/* <Route
               element={
                 <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
               }
@@ -47,7 +49,7 @@ const Router = () => {
             >
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-            </Route>
+            </Route> */}
           </Routes>
         </BrowserRouter>
       </ChakraProvider>
