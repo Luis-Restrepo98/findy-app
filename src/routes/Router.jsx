@@ -11,6 +11,7 @@ import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './publicRoutes';
 import Prueba from '../pages/prueba/Prueba';
 import StatusBar from '../components/statusBar/StatusBar';
+import Navigation from '../components/navigation/Navigation';
 
 export const AppContext = createContext({});
 
@@ -32,7 +33,8 @@ const Router = () => {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<StatusBar />} />
+            <Route path='/' element={<Navigation />} />
+            {/* <Route path='/' element={<StatusBar />} /> */}
             {/* <Route
               element={
                 <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
