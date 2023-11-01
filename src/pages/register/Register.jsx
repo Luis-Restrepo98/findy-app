@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -13,9 +13,12 @@ import { sweetAlert } from '../../utils/alerts';
 
 import './register.scss';
 import { createUser } from '../../services/userService';
+import fileUpload from '../../services/fileUpload';
 
 const Register = () => {
   const navigate = useNavigate();
+
+  const [file, setFile] = useState('');
 
   const backToLogin = () => navigate('/login');
 
@@ -28,14 +31,17 @@ const Register = () => {
   });
 
   const createNewUser = async values => {
+    const urlImage = await fileUpload(file);
+
     const newUser = {
       name: values.name,
       email: values.email,
       password: values.password,
       profile: {
         bio: `soy ${values.name}`,
-        avatar:
-          'https://res.cloudinary.com/dbtqtuwzw/image/upload/v1694445359/Sprint3_MAKAIA/random.png',
+        avatar: urlImage
+          ? urlImage
+          : 'https://res.cloudinary.com/dbtqtuwzw/image/upload/v1694445359/Sprint3_MAKAIA/random.png',
       },
       followers: [0, 0],
       following: [0, 0],
@@ -105,6 +111,16 @@ const Register = () => {
           />
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
+        <input
+          id='file'
+          name='file'
+          type='file'
+          onChange={event => {
+            const file = event.target.files[0];
+            setFile(file);
+            console.log(file);
+          }}
+        />
         <button type='submit'>Register</button>
         <a className='back_to_login_link' onClick={backToLogin}>
           Return to login
