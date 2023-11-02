@@ -12,6 +12,7 @@ import PublicRoutes from './publicRoutes';
 import Prueba from '../pages/prueba/Prueba';
 import StatusBar from '../components/statusBar/StatusBar';
 import Navigation from '../components/navigation/Navigation';
+import LayoutPublic from '../components/layout/LayoutPublic';
 
 export const AppContext = createContext({});
 
@@ -33,25 +34,26 @@ const Router = () => {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Navigation />} />
             {/* <Route path='/' element={<StatusBar />} /> */}
-            {/* <Route
-              element={
-                <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
-              }
-            >
-              <Route index element={<Home />} />
-              <Route path='/home' element={<Home />} />
-              <Route path='/prueba' element={<Prueba />} />
+            <Route element={<LayoutPublic />}>
+              <Route
+                element={
+                  <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
+                }
+              >
+                <Route index element={<Home />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/prueba' element={<Prueba />} />
+              </Route>
+              <Route
+                element={
+                  <PublicRoutes isAuthenticate={userLogged.isAuthenticated} />
+                }
+              >
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+              </Route>
             </Route>
-            <Route
-              element={
-                <PublicRoutes isAuthenticate={userLogged.isAuthenticated} />
-              }
-            >
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-            </Route> */}
           </Routes>
         </BrowserRouter>
       </ChakraProvider>
