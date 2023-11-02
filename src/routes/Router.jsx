@@ -10,8 +10,7 @@ import userLoggedReducer, {
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './publicRoutes';
 import Prueba from '../pages/prueba/Prueba';
-import LayoutPublic from '../components/layout/LayoutPublic';
-import LayoutPrivate from '../components/layout/LayoutPrivate';
+import Layout from '../components/layout/Layout';
 
 export const AppContext = createContext({});
 
@@ -33,26 +32,24 @@ const Router = () => {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-            <Route element={<LayoutPublic />}>
-              <Route
-                element={
-                  <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
-                }
-              >
-                <Route element={<LayoutPrivate />}>
-                  <Route index element={<Home />} />
-                  <Route path='/home' element={<Home />} />
-                  <Route path='/prueba' element={<Prueba />} />
-                </Route>
+            <Route
+              element={
+                <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
+              }
+            >
+              <Route element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/prueba' element={<Prueba />} />
               </Route>
-              <Route
-                element={
-                  <PublicRoutes isAuthenticate={userLogged.isAuthenticated} />
-                }
-              >
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-              </Route>
+            </Route>
+            <Route
+              element={
+                <PublicRoutes isAuthenticate={userLogged.isAuthenticated} />
+              }
+            >
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
             </Route>
           </Routes>
         </BrowserRouter>

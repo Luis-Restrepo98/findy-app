@@ -5,22 +5,22 @@
 }
 
 .navigation__container {
-  // border: 1px solid black;
-  // position: relative;
-  margin: auto;
+  // margin: auto;
   width: 428px;
   height: 80px;
-  // top: 869px
+
+  position: fixed;
+  top: 98%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .navigationBackground {
-    position: fixed;
+    position: relative;
 
-    bottom: 0;
-
-    .navigationBackgroundImage {
+    /*     .navigationBackgroundImage {
       border-bottom-left-radius: 40px;
       border-bottom-right-radius: 40px;
-    }
+    } */
 
     .casaIcon {
       position: absolute;
@@ -48,7 +48,7 @@
   }
 
   .newPostButton {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     left: 202px;
 

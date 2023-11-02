@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navigation from '../navigation/Navigation';
 
-const LayoutPrivate = () => {
+const Layout = () => {
   return (
     <>
       <Outlet />
@@ -11,4 +11,4 @@ const LayoutPrivate = () => {
   );
 };
 
-export default LayoutPrivate;
+export default Layout;
