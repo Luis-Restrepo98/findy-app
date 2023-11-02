@@ -11,9 +11,12 @@ import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { sweetAlert } from '../../utils/alerts';
 
-import './register.scss';
 import { createUser } from '../../services/userService';
 import fileUpload from '../../services/fileUpload';
+
+import cameraIcon from '../../assets/icons/camera-icon.svg';
+
+import './register.scss';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -33,15 +36,15 @@ const Register = () => {
   const createNewUser = async values => {
     const urlImage = await fileUpload(file);
 
+    if (!urlImage) alert('Please select and image');
+
     const newUser = {
       name: values.name,
       email: values.email,
       password: values.password,
       profile: {
         bio: `soy ${values.name}`,
-        avatar: urlImage
-          ? urlImage
-          : 'https://res.cloudinary.com/dbtqtuwzw/image/upload/v1694445359/Sprint3_MAKAIA/random.png',
+        avatar: urlImage,
       },
       followers: [0, 0],
       following: [0, 0],
@@ -111,16 +114,23 @@ const Register = () => {
           />
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
-        <input
-          id='file'
-          name='file'
-          type='file'
-          onChange={event => {
-            const file = event.target.files[0];
-            setFile(file);
-            console.log(file);
-          }}
-        />
+        <FormLabel for='file'>
+          Your profile picture
+          <img src={cameraIcon} alt='cameraIcon' className='cameraIcon' />
+          <input
+            required
+            id='file'
+            name='file'
+            type='file'
+            onChange={event => {
+              const file = event.target.files[0];
+              setFile(file);
+              console.log(file);
+            }}
+          />
+          <span id='imageName'>{file.name}</span>
+        </FormLabel>
+
         <button type='submit'>Register</button>
         <a className='back_to_login_link' onClick={backToLogin}>
           Return to login

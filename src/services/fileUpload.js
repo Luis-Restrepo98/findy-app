@@ -2,7 +2,7 @@ const fileUpload = async file => {
   const cloudName = 'dbtqtuwzw';
   const uploadPreset = 'findy-app';
 
-  const urlCloudinary = `https://res.cloudinary.com/${cloudName}/image/upload/`;
+  const urlCloudinary = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
   const formData = new FormData();
   formData.append('file', file);
