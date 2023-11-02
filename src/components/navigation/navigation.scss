@@ -6,15 +6,21 @@
 
 .navigation__container {
   // border: 1px solid black;
-  position: relative;
+  // position: relative;
   margin: auto;
   width: 428px;
   height: 80px;
   // top: 869px
 
   .navigationBackground {
-    position: absolute;
-    top: 23px;
+    position: fixed;
+
+    bottom: 0;
+
+    .navigationBackgroundImage {
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+    }
 
     .casaIcon {
       position: absolute;
@@ -42,9 +48,9 @@
   }
 
   .newPostButton {
-    position: absolute;
-    // top: 847px;
-    left: 181.5px;
+    position: fixed;
+    bottom: 20px;
+    left: 202px;
 
     .cruzIcon {
       position: absolute;

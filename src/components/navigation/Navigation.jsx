@@ -8,20 +8,46 @@ import campanaIcon from '../../assets/icons/campana-icon.svg';
 import userIcon from '../../assets/icons/user-icon.svg';
 
 import './navigation.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
+  const navigate = useNavigate();
+
+  const goToHome = () => navigate('/home');
+  const goToProfile = () => console.log('Voy al perfil del usuario');
+  const newPost = () => console.log('Crear nueva publicación');
+
   return (
     <main className='navigation__container'>
       <div className='newPostButton'>
-        <img src={circulo} alt='circulo' className='circulo' />
+        <img
+          src={circulo}
+          alt='circulo'
+          className='circulo'
+          onClick={newPost}
+        />
         <img src={cruzIcon} alt='cruzIcon' className='cruzIcon' />
       </div>
       <div className='navigationBackground'>
-        <img src={navigationBackground} alt='navigationBackground' />
-        <img src={casaIcon} alt='casaIcon' className='casaIcon' />
+        <img
+          src={navigationBackground}
+          alt='navigationBackground'
+          className='navigationBackgroundImage'
+        />
+        <img
+          src={casaIcon}
+          alt='casaIcon'
+          className='casaIcon'
+          onClick={goToHome}
+        />
         <img src={lupaIcon} alt='lupaIcon' className='lupaIcon' />
         <img src={campanaIcon} alt='campanaIcon' className='campanaIcon' />
-        <img src={userIcon} alt='userIcon' className='userIcon' />
+        <img
+          src={userIcon}
+          alt='userIcon'
+          className='userIcon'
+          onClick={goToProfile}
+        />
       </div>
     </main>
   );
