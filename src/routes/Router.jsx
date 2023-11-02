@@ -7,3 +7,5 @@ const Router = () => {
 }
 
 export default Router
+
+//useparams id usuario  get users id   =  id que viene de useParams
