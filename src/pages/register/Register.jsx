@@ -36,8 +36,6 @@ const Register = () => {
   const createNewUser = async values => {
     const urlImage = await fileUpload(file);
 
-    if (!urlImage) alert('Please select and image');
-
     const newUser = {
       name: values.name,
       email: values.email,
@@ -114,7 +112,7 @@ const Register = () => {
           />
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
-        <FormLabel for='file'>
+        <FormLabel htmlFor='file'>
           Your profile picture
           <img src={cameraIcon} alt='cameraIcon' className='cameraIcon' />
           <input
@@ -125,10 +123,10 @@ const Register = () => {
             onChange={event => {
               const file = event.target.files[0];
               setFile(file);
-              console.log(file);
+              // console.log(file);
             }}
           />
-          <span id='imageName'>{file.name}</span>
+          <span id='imageName'>{file?.name || ''}</span>
         </FormLabel>
 
         <button type='submit'>Register</button>
