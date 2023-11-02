@@ -19,15 +19,6 @@ const Navigation = () => {
 
   return (
     <main className='navigation__container'>
-      <div className='newPostButton'>
-        <img
-          src={circulo}
-          alt='circulo'
-          className='circulo'
-          onClick={newPost}
-        />
-        <img src={cruzIcon} alt='cruzIcon' className='cruzIcon' />
-      </div>
       <div className='navigationBackground'>
         <img
           src={navigationBackground}
@@ -47,6 +38,21 @@ const Navigation = () => {
           alt='userIcon'
           className='userIcon'
           onClick={goToProfile}
+        />
+      </div>
+
+      <div className='newPostButton'>
+        <img
+          src={circulo}
+          alt='circulo'
+          className='circulo'
+          onClick={newPost}
+        />
+        <img
+          src={cruzIcon}
+          alt='cruzIcon'
+          className='cruzIcon'
+          onClick={newPost}
         />
       </div>
     </main>

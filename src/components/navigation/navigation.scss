@@ -7,10 +7,10 @@
 .navigation__container {
   // margin: auto;
   width: 428px;
-  height: 80px;
+  // height: 80px;
 
   position: fixed;
-  top: 98%;
+  top: 97%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -49,10 +49,12 @@
 
   .newPostButton {
     position: absolute;
+
     bottom: 20px;
-    left: 202px;
+    left: 182px;
 
     .cruzIcon {
+      z-index: 1;
       position: absolute;
       top: 20px;
       left: 20px;
