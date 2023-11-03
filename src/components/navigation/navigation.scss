@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Balsamiq+Sans:wght@400;700&family=Barlow&family=Barlow+Condensed&family=Bellefair&family=Courgette&family=Epilogue:wght@500;700&family=Josefin+Sans:wght@300&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&family=Quicksand&family=Sarabun:wght@400;600;700&family=Space+Grotesk&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  // hidde the scrollbar
+  overflow: hidden;
+}
+
+.navigation__container {
+  // margin: auto;
+  width: 428px;
+  // height: 80px;
+
+  position: fixed;
+  top: 97%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .navigationBackground {
+    position: relative;
+
+    /*     .navigationBackgroundImage {
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+    } */
+
+    .casaIcon {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+    }
+
+    .lupaIcon {
+      position: absolute;
+      top: 20px;
+      left: 100px;
+    }
+
+    .campanaIcon {
+      position: absolute;
+      top: 20px;
+      right: 100px;
+    }
+
+    .userIcon {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+  }
+
+  .newPostButton {
+    position: absolute;
+
+    bottom: 20px;
+    left: 182px;
+
+    .cruzIcon {
+      z-index: 1;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+  }
+}
+
+.modalBodyPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: 'Balsamiq Sans', sans-serif;
+
+  #newPostText {
+    width: 250px;
+  }
+
+  label {
+    color: #ffbc74;
+  }
+
+  textarea {
+    border: 1px solid #ffbc74;
+  }
+}
+
+.modalFooterPost {
+  .postButton {
+    margin-right: 10px;
+    background-color: #eb5e5c;
+  }
+}
+
+.modalBodyEditProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Balsamiq Sans', sans-serif;
+
+  span {
+    color: #ffbc74;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      color: #ffbc74;
+      margin-top: 10px;
+    }
+
+    input,
+    textarea {
+      width: 250px;
+      border: #ffbc74 1px solid;
+      text-align: center;
+    }
+  }
+}
+
+.modalFooterEditProfile {
+  .editProfileButton {
+    background-color: #eb5e5c;
+    margin-right: 10px;
+  }
+}
