@@ -1,0 +1,132 @@
+{
+    "perfiles": [
+      {
+        "id": 1,
+        "image": "/src/assets/img/portada.jpg",
+        "perfil": "https://i.postimg.cc/1X3xs0Kz/angie.jpg",
+        "followers": "10.7 M",
+        "likes": "186.3 M",
+        "name": "Angie Diaz",
+        "description1": "Estudiante de economía y del diplomado en desarrollo Font-End",
+        "description2": "Me gusta caminar con mi perrita y disfruto aprender ",
+        "photo": [
+            {
+                "img1" : "/src/assets/img/img1.PNG"
+            },
+            {
+                "img2" : "/src/assets/img/img2.PNG"
+            },
+            {
+                "img3" : "/src/assets/img/img3.PNG"
+            },
+            {
+                "img4" : "/src/assets/img/img4.PNG"
+            }
+        ],
+        "video": "url_video_tour.mp4"
+      },
+      {
+        "id": 2,
+        "image": "https://i.postimg.cc/tgFG54T9/oscar.jpg",
+        "perfil": "https://i.postimg.cc/tgFG54T9/oscar.jpg",
+        "followers": "10.7 M",
+        "likes": "186.3 M",
+        "name": "Oscar Gomez",
+        "description1": "Estudiante del diplomado en desarrollo Font-End",
+        "description2": "Apasionado por la logica y programación ",
+        "photo": [
+            {
+                "img1" : "/src/assets/img/imgO1.JPG"
+            },
+            {
+                "img2" : "/src/assets/img/imgO2.JPG"
+            },
+            {
+                "img3" : "/src/assets/img/imgO3.JPG"
+            },
+            {
+                "img4" : "/src/assets/img/imgO4.JPG"
+            }
+        ],
+        "video": "url_video_tour_2.mp4"
+      },
+      {
+        "id": 3,
+        "image": "/src/assets/img/portada.jpg",
+        "perfil": "https://i.postimg.cc/MTDkC3V4/cristian.jpg",
+        "followers": "10.7 M",
+        "likes": "186.3 M",
+        "name": "Cristian Arenas",
+        "description1": "Estudiante del diplomado en desarrollo Font-End",
+        "description2": "Apasionado por la logica y programación ",
+        "photo": [
+            {
+                "img1" : "/src/assets/img/img1.PNG"
+            },
+            {
+                "img2" : "/src/assets/img/img2.PNG"
+            },
+            {
+                "img3" : "/src/assets/img/img3.PNG"
+            },
+            {
+                "img4" : "/src/assets/img/img4.PNG"
+            }
+        ],
+        "video": "url_video_tour_3.mp4"
+      },
+      {
+        "id": 4,
+        "image": "/src/assets/img/portada.jpg",
+        "perfil": "https://i.postimg.cc/85DQngJM/kevin.jpg",
+        "followers": "10.7 M",
+        "likes": "186.3 M",
+        "name": "Kevin ",
+        "description1": "Estudiante del diplomado en desarrollo Font-End",
+        "description2": "Apasionado por la logica y programación ",
+        "photo": [
+            {
+                "img1" : "/src/assets/img/img1.PNG"
+            },
+            {
+                "img2" : "/src/assets/img/img2.PNG"
+            },
+            {
+                "img3" : "/src/assets/img/img3.PNG"
+            },
+            {
+                "img4" : "/src/assets/img/img4.PNG"
+            }
+        ],
+        "video": "url_video_tour_3.mp4"
+      },
+
+      {
+        "id": 5,
+        "image": "https://i.postimg.cc/x8xwCks3/luis.jpg",
+        "perfil": "https://i.postimg.cc/x8xwCks3/luis.jpg",
+        "followers": "10.7 M",
+        "likes": "95.3 M",
+        "name": "Luis Restrepo",
+        "description1": "Estudiante del diplomado en desarrollo Font-End",
+        "description2": "Apasionado por la logica, programación y el desarrollo",
+        "photo": [
+            {
+                "img1" : "/src/assets/img/imgL1.JPG"
+            },
+            {
+                "img2" : "/src/assets/img/imgL2.JPG"
+            },
+            {
+                "img3" : "/src/assets/img/imgL3.JPG"
+            },
+            {
+                "img4" : "/src/assets/img/img4L.JPG"
+            }
+        ],
+        "video": "url_video_tour_3.mp4"
+      }
+    ]
+}
+  
+  
