@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import "./home.scss";
-import imageContainer from "../../assets/img/imagen-principal-home.png";
 import logoFindy from "../../assets/icons/logo-findy.svg";
 import corazonIcon1 from "../../assets/icons/corazon-icon1.svg";
 import corazonIconred from "../../assets/icons/corazon-iconred.svg";
@@ -9,8 +8,7 @@ import mensajesIcon from "../../assets/icons/mensajes-icon.svg";
 import mensajeIcon from "../../assets/icons/mensaje-icon.svg";
 import compartirIcon from "../../assets/icons/compartir-icon.svg";
 import banderitaIcon from "../../assets/icons/banderita-icon.svg";
-import agregarIcon from "../../assets/icons/agregar-icon.svg";
-import imagenOvalo from "../../assets/img/imagen-ovalo.png";
+import {useNavigate} from "react-router-dom"
 import {
   getUserByNameAndAvatar,
   getUserPublic,
@@ -21,11 +19,11 @@ import userLoggedReducer, {
 import { AppContext } from "../../routes/Router";
 import { addLikeToPost } from "../../services/postsService";
 
-import jennieKim from "../../assets/img/jennie-kim.png";
 
 import "./home.scss";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState([]);
   const [userPublic, setUserPublic] = useState([]);
 
@@ -127,7 +125,6 @@ const Home = () => {
                   src={user.profile.avatar}
                   alt=""
                 />
-
                 <h3 className="container__list__nombre">{user.name}</h3>
               </li>
             ))}
@@ -148,7 +145,7 @@ const Home = () => {
                       alt=""
                     />
                   }
-                  <h1 className="container__publi__nombre__perfil">
+                  <h1 onClick={()=>navigate(`/profile/${publi.userId}`)} className="container__publi__nombre__perfil">
                     {userInfo.find((user) => user.id === publi.userId)?.name}
                   </h1>
                 </div>

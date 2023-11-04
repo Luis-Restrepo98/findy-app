@@ -27,7 +27,7 @@ const Router = () => {
       userLoggedDispatch,
     },
   };
-
+ 
   return (
     <AppContext.Provider value={globalState}>
       <ChakraProvider>
@@ -42,7 +42,7 @@ const Router = () => {
                 <Route index element={<Home />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/prueba' element={<Prueba />} />
-                <Route path="/profile/:id" element ={<Perfil/>} />
+                <Route path="/profile/:id" element={<Perfil />} />
               </Route>
             </Route>
             <Route
