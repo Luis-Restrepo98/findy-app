@@ -19,13 +19,13 @@ const Home = () => {
     <div className='mainContainer'>
       <img src={jennieKim} alt='jennieKim' className='mainImage' />
       <img src={jennieKim} alt='jennieKim' className='mainImage' />
-      {/* <button
+      <button
         onClick={() => {
-          navigate('/prueba');
+          navigate('/profile/1');
         }}
       >
         Go to Prueba
-      </button> */}
+      </button> 
     </div>
   );
 };

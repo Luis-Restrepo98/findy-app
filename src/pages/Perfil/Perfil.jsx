@@ -1,13 +1,13 @@
 import "./Perfil.scss";
 import React, { useState } from "react";
 /* import { Link, Route, Routes } from "react-router-dom"; */
-
+import {useParams} from "react-router-dom";
 import data from "../../data/db.json";
 
-const profileIdToFind = 2;
-const profile = data.perfiles.find(item =>item.id === profileIdToFind);
-
 const Perfil = () => {
+  const {id}=useParams()
+  const profileIdToFind = id;
+  const profile = data.perfiles.find((item) => item.id === profileIdToFind);
   const [perfil, setPerfil] = useState("PHOTOS");
 
   const handlePhotos = () => {
@@ -21,7 +21,7 @@ const Perfil = () => {
   const handleAlbum = () => {
     setPerfil("ALBUM");
   };
- 
+
   const handleTag = () => {
     setPerfil("TAG");
   };
@@ -34,7 +34,11 @@ const Perfil = () => {
   return (
     <>
       <main className="contenedor__main">
-        <img className="contenedor__main__imgPortada" src={profile.image} alt="" />
+        <img
+          className="contenedor__main__imgPortada"
+          src={profile.image}
+          alt=""
+        />
         <section className="contenedor__main__background">
           <span className="contenedor__main__span">
             <img
@@ -47,7 +51,8 @@ const Perfil = () => {
             <div className="contenedor__main__contenFollow">
               <h1 className="contenedor__main__millonFollow">
                 {" "}
-                {seguidores.toFixed(1)} </h1>
+                {seguidores.toFixed(1)}{" "}
+              </h1>
               <h2 className="contenedor__main__followers"> Followers</h2>
             </div>
             <div className="contenedor__main__contenLike">
@@ -57,7 +62,9 @@ const Perfil = () => {
           </section>
           <section className="contenedor__main__textDescription">
             <p className="contenedor__main__name">{profile.name}</p>
-            <h3 className="contenedor__main__description">{profile.description1}</h3>
+            <h3 className="contenedor__main__description">
+              {profile.description1}
+            </h3>
             <h3 className="contenedor__main__follow">{profile.description2}</h3>
           </section>
           <div className="contenedor__main__contenedorFollow">
@@ -75,10 +82,30 @@ const Perfil = () => {
 
           <div className="contenedor__main__contenedorInfo">
             <div className="contenedor__main__contenedor">
-              <button className="contenedor__main__contenedorButton" onClick={handlePhotos}>Photos </button>
-              <button className="contenedor__main__contenedorButton" onClick={handleVideos}>Videos</button>
-              <button className="contenedor__main__contenedorButton" onClick={handleAlbum}>Album</button>
-              <button className="contenedor__main__contenedorButton" onClick={handleTag}>Tag</button>
+              <button
+                className="contenedor__main__contenedorButton"
+                onClick={handlePhotos}
+              >
+                Photos{" "}
+              </button>
+              <button
+                className="contenedor__main__contenedorButton"
+                onClick={handleVideos}
+              >
+                Videos
+              </button>
+              <button
+                className="contenedor__main__contenedorButton"
+                onClick={handleAlbum}
+              >
+                Album
+              </button>
+              <button
+                className="contenedor__main__contenedorButton"
+                onClick={handleTag}
+              >
+                Tag
+              </button>
             </div>
             <div className="contenedor__main__contenedorPhoto">
               {perfil === "PHOTOS" ? (
@@ -86,20 +113,45 @@ const Perfil = () => {
                   {" "}
                   <div>
                     {perfil === "PHOTOS" ? (
-                      <img className="contenedor__main__rosado" src={profile.photo[0].img1}  alt="" />
+                      <img
+                        className="contenedor__main__rosado"
+                        src={profile.photo[0].img1}
+                        alt=""
+                      />
                     ) : (
-                    <></>
+                      <></>
                     )}
-                    {perfil === "PHOTOS" ? <img className="contenedor__main__azul"src={profile.photo[1].img2} /> : <></>}
-                    {perfil === "PHOTOS" ? <img className="contenedor__main__gris" src={profile.photo[2].img3} /> : <></>}
-                    {perfil === "PHOTOS" ? <img className="contenedor__main__morado"src={profile.photo[3].img4}  /> : <></>}
+                    {perfil === "PHOTOS" ? (
+                      <img
+                        className="contenedor__main__azul"
+                        src={profile.photo[1].img2}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                    {perfil === "PHOTOS" ? (
+                      <img
+                        className="contenedor__main__gris"
+                        src={profile.photo[2].img3}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                    {perfil === "PHOTOS" ? (
+                      <img
+                        className="contenedor__main__morado"
+                        src={profile.photo[3].img4}
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </div>{" "}
                 </>
               ) : (
                 <></>
               )}
             </div>
-          {/* <div className="contenedor__main__contenedorPhoto">
+            {/* <div className="contenedor__main__contenedorPhoto">
               {perfil === "VIDEOS" ? (
                 <>
                   {" "}
@@ -123,6 +175,5 @@ const Perfil = () => {
     </>
   );
 };
-
 
 export default Perfil;
