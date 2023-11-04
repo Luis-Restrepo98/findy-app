@@ -32,25 +32,25 @@ const Router = () => {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-            <Route
+            {/* <Route
               element={
                 <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
               }
-            >
-              <Route element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path='/home' element={<Home />} />
-                <Route path='/prueba' element={<Prueba />} />
-              </Route>
+            > */}
+            <Route element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/prueba' element={<Prueba />} />
             </Route>
-            <Route
+            {/* </Route> */}
+            {/* <Route
               element={
                 <PublicRoutes isAuthenticate={userLogged.isAuthenticated} />
               }
             >
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-            </Route>
+            </Route> */}
           </Routes>
         </BrowserRouter>
       </ChakraProvider>
