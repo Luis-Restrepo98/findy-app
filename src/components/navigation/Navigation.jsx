@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UploadWidget from '../../components/uploadWidget/UploadWidget';
+import { createNewPost } from '../../services/postService';
+import { AppContext } from '../../routes/Router';
 
 import {
   Modal,
@@ -25,12 +27,36 @@ import userIcon from '../../assets/icons/user-icon.svg';
 import './navigation.scss';
 
 const Navigation = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   const navigate = useNavigate();
+  const [postText, setPostText] = useState('');
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const goToHome = () => navigate('/home');
   const goToProfile = () => console.log('Voy al perfil del usuario');
+
+  const {
+    userLogged: { userLogged },
+  } = useContext(AppContext);
+
+  // console.log('From Navigation:', userLogged);
+
+  const createPost = () => {
+    const postBody = {
+      userId: userLogged.user.id,
+      content: [
+        {
+          photo: document.querySelector('.previewImage').src,
+          text: postText,
+        },
+      ],
+      comments: [],
+      likes: [],
+    };
+
+    createNewPost(postBody);
+    setPostText('');
+    onClose();
+  };
 
   return (
     <main className='navigation__container'>
@@ -89,12 +115,16 @@ const Navigation = () => {
               id='newPostText'
               name='newPostText'
               type='text'
+              value={postText}
+              onChange={e => setPostText(e.target.value)}
             />
             <br />
             <UploadWidget />
           </ModalBody>
           <ModalFooter className='modalFooter'>
-            <Button className='postButton'>Post</Button>
+            <Button className='postButton' onClick={createPost}>
+              Post
+            </Button>
             <Button className='cancelButton' onClick={onClose}>
               Cancel
             </Button>

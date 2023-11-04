@@ -28,7 +28,7 @@ const UploadWidget = () => {
   return (
     <>
       <button className='uploadButton' onClick={() => widgetRef.current.open()}>
-        Uplaod Photo
+        Upload Photo
       </button>
       <br />
       <img
