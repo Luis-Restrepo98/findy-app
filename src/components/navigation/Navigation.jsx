@@ -41,21 +41,25 @@ const Navigation = () => {
   // console.log('From Navigation:', userLogged);
 
   const createPost = () => {
-    const postBody = {
-      userId: userLogged.user.id,
-      content: [
-        {
-          photo: document.querySelector('.previewImage').src,
-          text: postText,
-        },
-      ],
-      comments: [],
-      likes: [],
-    };
+    const imageUrl = document.querySelector('.previewImage')?.src;
 
-    createNewPost(postBody);
-    setPostText('');
-    onClose();
+    if (!imageUrl.includes('camera-icon.svg')) {
+      const postBody = {
+        userId: userLogged.user.id,
+        content: [
+          {
+            photo: imageUrl,
+            text: postText,
+          },
+        ],
+        comments: [],
+        likes: [],
+      };
+
+      createNewPost(postBody);
+      setPostText('');
+      onClose();
+    }
   };
 
   return (
