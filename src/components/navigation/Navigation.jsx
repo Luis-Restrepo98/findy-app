@@ -29,16 +29,24 @@ import './navigation.scss';
 const Navigation = () => {
   const navigate = useNavigate();
   const [postText, setPostText] = useState('');
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isPostOpen,
+    onOpen: onPostOpen,
+    onClose: onPostClose,
+  } = useDisclosure();
+  const {
+    isOpen: isEditProfileOpen,
+    onOpen: onEditProfileOpen,
+    onClose: onEditProfileClose,
+  } = useDisclosure();
 
   const goToHome = () => navigate('/home');
-  const goToProfile = () => console.log('Voy al perfil del usuario');
 
   const {
     userLogged: { userLogged },
   } = useContext(AppContext);
 
-  // console.log('From Navigation:', userLogged);
+  console.log('From Navigation:', userLogged);
 
   const createPost = () => {
     const imageUrl = document.querySelector('.previewImage')?.src;
@@ -58,7 +66,7 @@ const Navigation = () => {
 
       createNewPost(postBody);
       setPostText('');
-      onClose();
+      onPostClose();
     }
   };
 
@@ -82,36 +90,41 @@ const Navigation = () => {
           src={userIcon}
           alt='userIcon'
           className='userIcon'
-          onClick={goToProfile}
+          onClick={onEditProfileOpen}
         />
       </div>
 
       <div className='newPostButton'>
-        <img src={circulo} alt='circulo' className='circulo' onClick={onOpen} />
+        <img
+          src={circulo}
+          alt='circulo'
+          className='circulo'
+          onClick={onPostOpen}
+        />
         <img
           src={cruzIcon}
           alt='cruzIcon'
           className='cruzIcon'
-          onClick={onOpen}
+          onClick={onPostOpen}
         />
       </div>
 
-      {/* Modal */}
+      {/* Post Modal */}
 
       <Modal
         scrollBehavior='inside'
         closeOnOverlayClick={false}
-        onClose={onClose}
-        isOpen={isOpen}
         size='sm'
         isCentered
-        className='modal'
+        className='modalPost'
+        isOpen={isPostOpen}
+        onClose={onPostClose}
       >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>New Post</ModalHeader>
           <ModalCloseButton />
-          <ModalBody className='modalBody'>
+          <ModalBody className='modalBodyPost'>
             <label>Wanna say something?</label>
             <br />
             <textarea
@@ -125,12 +138,49 @@ const Navigation = () => {
             <br />
             <UploadWidget />
           </ModalBody>
-          <ModalFooter className='modalFooter'>
+          <ModalFooter className='modalFooterPost'>
             <Button className='postButton' onClick={createPost}>
               Post
             </Button>
-            <Button className='cancelButton' onClick={onClose}>
+            <Button className='cancelButton' onClick={onPostClose}>
               Cancel
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* Edit Profile Modal */}
+
+      <Modal
+        scrollBehavior='inside'
+        closeOnOverlayClick={false}
+        size='sm'
+        isCentered
+        className='modalEditProfile'
+        isOpen={isEditProfileOpen}
+        onClose={onEditProfileClose}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Profile Information</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody className='modalBodyEditProfile'>
+            <span>Profile picture</span>
+            <UploadWidget profilePictureUrl={userLogged.user.profile.avatar} />
+            <form>
+              <label>Username</label>
+              <input type='text' defaultValue={userLogged.user.name} />
+              <label>Bio</label>
+              <textarea defaultValue={userLogged.user.profile.bio}></textarea>
+            </form>
+          </ModalBody>
+          <ModalFooter className='modalFooterEditProfile'>
+            <Button className='editProfileButton'>Edit</Button>
+            <Button
+              className='closeEditProfileButton'
+              onClick={onEditProfileClose}
+            >
+              Close
             </Button>
           </ModalFooter>
         </ModalContent>

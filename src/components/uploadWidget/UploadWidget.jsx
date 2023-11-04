@@ -3,10 +3,12 @@ import cameraIcon from '../../assets/icons/camera-icon.svg';
 
 import './uploadWidget.scss';
 
-const UploadWidget = () => {
+const UploadWidget = ({ profilePictureUrl }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const [imageUrl, setImageUrl] = useState('');
+  const [profilePictureUpdated, setProfilePictureUpdated] =
+    useState(profilePictureUrl);
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
@@ -19,6 +21,7 @@ const UploadWidget = () => {
         if (result.event === 'success') {
           // console.log(result.info.secure_url);
           setImageUrl(result.info.secure_url);
+          setProfilePictureUpdated(result.info.secure_url);
           if (error) console.log(error);
         }
       }
@@ -27,14 +30,11 @@ const UploadWidget = () => {
 
   return (
     <>
-      <button className='uploadButton' onClick={() => widgetRef.current.open()}>
-        Upload Photo
-      </button>
-      <br />
       <img
-        src={imageUrl || cameraIcon}
+        src={profilePictureUpdated || imageUrl || cameraIcon}
         alt='cameraIcon'
         className='previewImage'
+        onClick={() => widgetRef.current.open()}
       />
     </>
   );
