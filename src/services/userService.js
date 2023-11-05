@@ -28,3 +28,13 @@ export const getUserByEmailAndPassword = async (email, password) => {
     return null;
   }
 };
+
+export const updateUser = async (id, body) => {
+  try {
+    const { data } = await axios.patch(endpoints.userById(id), body);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};

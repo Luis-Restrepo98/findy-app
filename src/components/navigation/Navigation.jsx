@@ -25,15 +25,30 @@ import campanaIcon from '../../assets/icons/campana-icon.svg';
 import userIcon from '../../assets/icons/user-icon.svg';
 
 import './navigation.scss';
+import { updateUser } from '../../services/userService';
 
 const Navigation = () => {
+  const {
+    userLogged: { userLogged },
+  } = useContext(AppContext);
+
+  console.log('From Navigation:', userLogged);
+
   const navigate = useNavigate();
+
   const [postText, setPostText] = useState('');
+
+  const [profileInformation, setProfileInformation] = useState({
+    username: userLogged.user.name,
+    bio: userLogged.user.profile.bio,
+  });
+
   const {
     isOpen: isPostOpen,
     onOpen: onPostOpen,
     onClose: onPostClose,
   } = useDisclosure();
+
   const {
     isOpen: isEditProfileOpen,
     onOpen: onEditProfileOpen,
@@ -41,12 +56,6 @@ const Navigation = () => {
   } = useDisclosure();
 
   const goToHome = () => navigate('/home');
-
-  const {
-    userLogged: { userLogged },
-  } = useContext(AppContext);
-
-  console.log('From Navigation:', userLogged);
 
   const createPost = () => {
     const imageUrl = document.querySelector('.previewImage')?.src;
@@ -68,6 +77,22 @@ const Navigation = () => {
       setPostText('');
       onPostClose();
     }
+  };
+
+  const editProfile = () => {
+    const imageUrl = document.querySelector('.previewImage')?.src;
+
+    const editBody = {
+      name: profileInformation.username,
+      profile: {
+        bio: profileInformation.bio,
+        avatar: imageUrl,
+      },
+    };
+
+    // console.log(editBody);
+    updateUser(userLogged.user.id, editBody);
+    onEditProfileClose();
   };
 
   return (
@@ -169,13 +194,32 @@ const Navigation = () => {
             <UploadWidget profilePictureUrl={userLogged.user.profile.avatar} />
             <form>
               <label>Username</label>
-              <input type='text' defaultValue={userLogged.user.name} />
+              <input
+                type='text'
+                value={profileInformation.username}
+                onChange={e =>
+                  setProfileInformation({
+                    ...profileInformation,
+                    username: e.target.value,
+                  })
+                }
+              />
               <label>Bio</label>
-              <textarea defaultValue={userLogged.user.profile.bio}></textarea>
+              <textarea
+                value={profileInformation.bio}
+                onChange={e =>
+                  setProfileInformation({
+                    ...profileInformation,
+                    bio: e.target.value,
+                  })
+                }
+              ></textarea>
             </form>
           </ModalBody>
           <ModalFooter className='modalFooterEditProfile'>
-            <Button className='editProfileButton'>Edit</Button>
+            <Button className='editProfileButton' onClick={editProfile}>
+              Save
+            </Button>
             <Button
               className='closeEditProfileButton'
               onClick={onEditProfileClose}
