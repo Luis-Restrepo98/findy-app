@@ -147,7 +147,11 @@ body {
   }
   &__iconos {
     display: flex;
-    margin-top: -4px;
+    margin-top: 6px;
+  }
+  & span {
+    margin-top: 35px;
+    margin-left: -10px;
   }
   &__like {
     width: 27.12px;
@@ -178,8 +182,8 @@ body {
     margin-left: 243px;
   }
   &__comentarios {
-    margin-left: -2px;
-    margin-top: 2px;
+    margin-left: 2px;
+    margin-top: 30px;
   }
   &__comentario {
     width: 375px;
@@ -198,7 +202,7 @@ body {
   &__nombre__comentario {
     width: auto;
     height: 16px;
-    margin-top: 2px;
+    margin-top: -8px;
     margin-left: 14px;
 
     font-family: Balsamiq Sans;
@@ -208,4 +212,46 @@ body {
     letter-spacing: 0em;
     text-align: left;
   }
+}
+.App {
+  text-align: center;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input, button {
+  margin: 10px;
 }
