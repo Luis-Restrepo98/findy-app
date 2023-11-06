@@ -10,7 +10,7 @@ import userLoggedReducer, {
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './publicRoutes';
 import Prueba from '../pages/prueba/Prueba';
-import StatusBar from '../components/statusBar/StatusBar';
+import Layout from '../components/layout/Layout';
 
 export const AppContext = createContext({});
 
@@ -21,7 +21,7 @@ const Router = () => {
   );
 
   const globalState = {
-    userLogged: {
+    loggedInfo: {
       userLogged,
       userLoggedDispatch,
     },
@@ -32,15 +32,16 @@ const Router = () => {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<StatusBar />} />
-            {/* <Route
+            <Route
               element={
                 <PrivateRoutes isAuthenticate={userLogged.isAuthenticated} />
               }
             >
-              <Route index element={<Home />} />
-              <Route path='/home' element={<Home />} />
-              <Route path='/prueba' element={<Prueba />} />
+              <Route element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/prueba' element={<Prueba />} />
+              </Route>
             </Route>
             <Route
               element={
@@ -49,7 +50,7 @@ const Router = () => {
             >
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-            </Route> */}
+            </Route>
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

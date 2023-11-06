@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -11,11 +11,17 @@ import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { sweetAlert } from '../../utils/alerts';
 
-import './register.scss';
 import { createUser } from '../../services/userService';
+import fileUpload from '../../services/fileUpload';
+
+import cameraIcon from '../../assets/icons/camera-icon.svg';
+
+import './register.scss';
 
 const Register = () => {
   const navigate = useNavigate();
+
+  const [file, setFile] = useState('');
 
   const backToLogin = () => navigate('/login');
 
@@ -28,14 +34,15 @@ const Register = () => {
   });
 
   const createNewUser = async values => {
+    const urlImage = await fileUpload(file);
+
     const newUser = {
       name: values.name,
       email: values.email,
       password: values.password,
       profile: {
         bio: `soy ${values.name}`,
-        avatar:
-          'https://res.cloudinary.com/dbtqtuwzw/image/upload/v1694445359/Sprint3_MAKAIA/random.png',
+        avatar: urlImage,
       },
       followers: [0, 0],
       following: [0, 0],
@@ -105,6 +112,23 @@ const Register = () => {
           />
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
+        <FormLabel htmlFor='file'>
+          Your profile picture
+          <img src={cameraIcon} alt='cameraIcon' className='cameraIcon' />
+          <input
+            required
+            id='file'
+            name='file'
+            type='file'
+            onChange={event => {
+              const file = event.target.files[0];
+              setFile(file);
+              // console.log(file);
+            }}
+          />
+          <span id='imageName'>{file?.name || ''}</span>
+        </FormLabel>
+
         <button type='submit'>Register</button>
         <a className='back_to_login_link' onClick={backToLogin}>
           Return to login

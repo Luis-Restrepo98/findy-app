@@ -5,5 +5,5 @@ import Home from './pages/home/Home'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
- <Home/>
+ <Router/>
 )
