@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mainContainer {
+  position: relative;
+  margin: auto;
+
+  width: 428px;
+  height: 558px;
+  border: 1px solid black;
+
+  .mainImage {
+    border-radius: 20px;
+  }
+}

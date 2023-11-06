@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Balsamiq+Sans:wght@400;700&family=Barlow&family=Barlow+Condensed&family=Bellefair&family=Courgette&family=Epilogue:wght@500;700&family=Josefin+Sans:wght@300&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&family=Quicksand&family=Sarabun:wght@400;600;700&family=Space+Grotesk&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login__container {
+  position: relative;
+  margin: auto;
+  border: solid black 1px;
+
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  text-align: center;
+  padding: 10px;
+
+  width: 428px;
+  height: 926px;
+  // top: 1px;
+
+  font-family: 'Balsamiq Sans', sans-serif;
+
+  padding-top: 30px;
+
+  .login_title {
+    color: #ffbc74;
+  }
+
+  .login_form {
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 5px;
+      background-color: #ff7674;
+      border-radius: 10px;
+    }
+
+    input {
+      font-size: 20px;
+      font-family: 'Balsamiq Sans', sans-serif;
+    }
+
+    a {
+      color: #ff7674;
+    }
+
+    a:hover {
+      cursor: pointer;
+      color: #ff7674;
+      text-decoration: underline;
+    }
+  }
+}
