@@ -21,7 +21,7 @@ const Router = () => {
   );
 
   const globalState = {
-    userLogged: {
+    loggedInfo: {
       userLogged,
       userLoggedDispatch,
     },
