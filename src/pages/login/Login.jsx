@@ -19,7 +19,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const {
-    loggedInfo: { userLogged, userLoggedDispatch },
+    userLogged: { userLogged, userLoggedDispatch },
   } = useContext(AppContext);
 
   const schema = object({
