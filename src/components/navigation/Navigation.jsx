@@ -26,10 +26,11 @@ import userIcon from '../../assets/icons/user-icon.svg';
 
 import './navigation.scss';
 import { updateUser } from '../../services/userService';
+import { sweetAlert } from '../../utils/alerts';
 
 const Navigation = () => {
   const {
-    userLogged: { userLogged },
+    userLogged: { userLogged, userLoggedDispatch },
   } = useContext(AppContext);
 
   console.log('From Navigation:', userLogged);
@@ -79,7 +80,7 @@ const Navigation = () => {
     }
   };
 
-  const editProfile = () => {
+  const editProfile = async () => {
     const imageUrl = document.querySelector('.previewImage')?.src;
 
     const editBody = {
@@ -90,8 +91,21 @@ const Navigation = () => {
       },
     };
 
-    // console.log(editBody);
-    updateUser(userLogged.user.id, editBody);
+    const userUpdated = await updateUser(userLogged.user.id, editBody);
+
+    if (userUpdated) {
+      const action = {
+        type: 'UPDATE',
+        payload: {
+          isAuthenticated: true,
+          user: userUpdated,
+        },
+      };
+      userLoggedDispatch(action);
+    } else {
+      sweetAlert('error', 'There was an unexpected error');
+    }
+
     onEditProfileClose();
   };
 

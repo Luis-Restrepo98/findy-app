@@ -9,6 +9,8 @@ const userLoggedReducer = (state = userLoggedInitial, action) => {
       return action.payload;
     case 'LOGOUT':
       return userLoggedInitial;
+    case 'UPDATE':
+      return { ...state, ...action.payload };
     default:
       return state;
   }
