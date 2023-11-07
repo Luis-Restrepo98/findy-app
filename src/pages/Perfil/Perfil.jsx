@@ -1,5 +1,5 @@
 import './Perfil.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import flechaAtras from '../../assets/icons/atras-icon.svg';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -7,131 +7,13 @@ import {
   getUserByNameAndAvatar,
   getUserPublic,
 } from '../../services/infousuario';
+import { AppContext } from '../../routes/Router';
 
 const Perfil = () => {
-  const perfiles = [
-    {
-      id: 1,
-      image: '/src/assets/img/portada.jpg',
-      perfil: 'https://i.postimg.cc/1X3xs0Kz/angie.jpg',
-      followers: '10.7 M',
-      likes: '186.3 M',
-      name: 'Angie Diaz',
-      description1:
-        'Estudiante de economía y del diplomado en desarrollo Front-End',
-      photo: [
-        {
-          img1: 'https://i.postimg.cc/1X3xs0Kz/angie.jpg',
-        },
-        {
-          img2: 'https://i.postimg.cc/x8R84tRx/imagen-angie-2.jpg',
-        },
-        {
-          img3: 'https://i.postimg.cc/KjN7D7gF/imagen-angie-3.jpg',
-        },
-        {
-          img4: 'https://i.postimg.cc/h4b0nnZw/imagen-angie-4.jpg',
-        },
-      ],
-      video: 'url_video_tour.mp4',
-    },
-    {
-      id: 2,
-      image: 'https://i.postimg.cc/tgFG54T9/oscar.jpg',
-      perfil: 'https://i.postimg.cc/tgFG54T9/oscar.jpg',
-      followers: '10.7 M',
-      likes: '186.3 M',
-      name: 'Oscar Gomez',
-      description1: 'Estudiante del diplomado en desarrollo Front-End',
-      photo: [
-        {
-          img1: 'https://i.postimg.cc/tgFG54T9/oscar.jpg',
-        },
-        {
-          img2: 'https://i.postimg.cc/jSzfH4V1/imagen-oscar-2.jpg',
-        },
-        {
-          img3: 'https://i.postimg.cc/fbD9BSDR/imagen-oscar-3.jpg',
-        },
-        {
-          img4: 'https://i.postimg.cc/wjKJRbrJ/imagen-oscar-4.jpg',
-        },
-      ],
-      video: 'url_video_tour_2.mp4',
-    },
-    {
-      id: 3,
-      image: 'https://i.postimg.cc/MTDkC3V4/cristian.jpg',
-      perfil: 'https://i.postimg.cc/MTDkC3V4/cristian.jpg',
-      followers: '10.7 M',
-      likes: '186.3 M',
-      name: 'Cristian Arenas',
-      description1: 'Estudiante del diplomado en desarrollo Front-End',
-      photo: [
-        {
-          img1: 'https://i.postimg.cc/MTDkC3V4/cristian.jpg',
-        },
-        {
-          img2: 'https://i.postimg.cc/wxwdw1YT/imagen-cristian-2.jpg',
-        },
-        {
-          img3: 'https://i.postimg.cc/Bbnfq0H0/imagen-cristian-3.jpg',
-        },
-        {
-          img4: 'https://i.postimg.cc/qqDVq5xC/imagen-cristian-4.jpg',
-        },
-      ],
-      video: 'url_video_tour_3.mp4',
-    },
-    {
-      id: 4,
-      image: 'https://i.postimg.cc/85DQngJM/kevin.jpg',
-      perfil: 'https://i.postimg.cc/85DQngJM/kevin.jpg',
-      followers: '10.7 M',
-      likes: '186.3 M',
-      name: 'Kevin Colorado',
-      description1: 'Estudiante del diplomado en desarrollo Front-End',
-      photo: [
-        {
-          img1: 'https://i.postimg.cc/85DQngJM/kevin.jpg',
-        },
-        {
-          img2: 'https://i.postimg.cc/RV8hbsxF/imagen-kevin-2.jpg',
-        },
-        {
-          img3: 'https://i.postimg.cc/XYCqMfng/imagen-kevin-3.jpg',
-        },
-        {
-          img4: 'https://i.postimg.cc/1544BxT2/imagen-kevin-4.jpg',
-        },
-      ],
-      video: 'url_video_tour_3.mp4',
-    },
-    {
-      id: 5,
-      image: 'https://i.postimg.cc/x8xwCks3/luis.jpg',
-      perfil: 'https://i.postimg.cc/x8xwCks3/luis.jpg',
-      followers: '10.7 M',
-      likes: '95.3 M',
-      name: 'Luis Restrepo',
-      description1: 'Apasionado por la lógica y la programación',
-      photo: [
-        {
-          img1: 'https://i.postimg.cc/x8xwCks3/luis.jpg',
-        },
-        {
-          img2: 'https://i.postimg.cc/SxS4dcJs/imagen-luis-2.jpg',
-        },
-        {
-          img3: 'https://i.postimg.cc/KcTm8Z6Z/imagen-luis-3.jpg',
-        },
-        {
-          img4: 'https://i.postimg.cc/X7c39sNm/imagen-luis-4.jpg',
-        },
-      ],
-      video: 'url_video_tour_3.mp4',
-    },
-  ];
+  const {
+    userLogged: { userLogged, userLoggedDispatch },
+    postReducerInfo: { postState, postDispatch },
+  } = useContext(AppContext);
 
   const [userInfo, setUserInfo] = useState([]);
   const [userPublic, setUserPublic] = useState([]);
@@ -157,21 +39,17 @@ const Perfil = () => {
 
     obtenerDatos();
     obtenerPublic();
-  }, []);
+  }, [postState, userLogged]);
 
   const navigate = useNavigate();
 
   const { id } = useParams();
-  console.log('id', id);
   const profileIdToFind = id;
-  // const profile = perfiles.find(item => item.id == profileIdToFind);
   const profile = userInfo.find(item => item.id == profileIdToFind);
 
   const userSelectedPosts = userPublic.filter(
     post => post.userId == profileIdToFind
   );
-
-  console.log(userSelectedPosts);
 
   const [perfil, setPerfil] = useState('PHOTOS');
 
@@ -224,8 +102,7 @@ const Perfil = () => {
           <section className='contenedor__main__FollowLike'>
             <div className='contenedor__main__contenFollow'>
               <h1 className='contenedor__main__millonFollow'>
-                {' '}
-                {seguidores.toFixed(1)}{' '}
+                {seguidores.toFixed(1)}
               </h1>
               <h2 className='contenedor__main__followers'> Followers</h2>
             </div>
@@ -248,8 +125,7 @@ const Perfil = () => {
               Follow
             </button>
             <button className='contenedor__main__buttonMessages'>
-              {' '}
-              Messages{' '}
+              Messages
             </button>
           </div>
 
@@ -259,7 +135,7 @@ const Perfil = () => {
                 className='contenedor__main__contenedorButton'
                 onClick={handlePhotos}
               >
-                Photos{' '}
+                Photos
               </button>
               <button
                 className='contenedor__main__contenedorButton'

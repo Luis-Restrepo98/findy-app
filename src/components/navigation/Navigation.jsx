@@ -33,8 +33,6 @@ const Navigation = () => {
     postReducerInfo: { postState, postDispatch },
   } = useContext(AppContext);
 
-  console.log('From Navigation:', userLogged);
-
   const navigate = useNavigate();
 
   const [postText, setPostText] = useState('');
@@ -85,7 +83,6 @@ const Navigation = () => {
         },
       };
       postDispatch(action);
-      console.log(postState);
 
       onPostClose();
     }

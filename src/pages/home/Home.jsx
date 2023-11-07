@@ -16,18 +16,6 @@ import mensajeIcon from '../../assets/icons/mensaje-icon.svg';
 import compartirIcon from '../../assets/icons/compartir-icon.svg';
 import banderitaIcon from '../../assets/icons/banderita-icon.svg';
 
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-} from '@chakra-ui/react';
-
 import './home.scss';
 import { updateCommentsInPost } from '../../services/postService';
 import { useNavigate } from 'react-router-dom';
@@ -37,10 +25,6 @@ const Home = () => {
     userLogged: { userLogged, userLoggedDispatch },
     postReducerInfo: { postState, postDispatch },
   } = useContext(AppContext);
-
-  console.log('Post state from home:', postState);
-
-  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState([]);
@@ -271,39 +255,6 @@ const Home = () => {
             ))}
           </ul>
         </section>
-
-        {/* Modal Comments */}
-
-        {/* <Modal
-          scrollBehavior='inside'
-          closeOnOverlayClick={false}
-          size='sm'
-          isCentered
-          className='modalComments'
-          isOpen={isOpen}
-          onClose={onClose}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Comments Section</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody className='modalBodyPost'>
-              <ul>
-                {publi.comments.map((comment, index) => (
-                  <>
-                    <li key={index}>{comment.contents}</li>
-                  </>
-                ))}
-              </ul>
-            </ModalBody>
-            <ModalFooter className='modalFooterComments'>
-              <Button className='saveCommentButton'>Save</Button>
-              <Button className='cancelButton' onClick={onClose}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal> */}
       </main>
     </>
   );
