@@ -1,35 +1,42 @@
-import React, { useState, useEffect, useReducer, useContext } from 'react';
-import './home.scss';
-import imageContainer from '../../assets/img/imagen-principal-home.png';
+import React, { useState, useEffect, useContext } from 'react';
+
+import {
+  getUserByNameAndAvatar,
+  getUserPublic,
+} from '../../services/infousuario';
+
+import { AppContext } from '../../routes/Router';
+import { addLikeToPost } from '../../services/postsService';
+
 import logoFindy from '../../assets/icons/logo-findy.svg';
 import corazonIcon1 from '../../assets/icons/corazon-icon1.svg';
 import mensajesIcon from '../../assets/icons/mensajes-icon.svg';
 import mensajeIcon from '../../assets/icons/mensaje-icon.svg';
 import compartirIcon from '../../assets/icons/compartir-icon.svg';
 import banderitaIcon from '../../assets/icons/banderita-icon.svg';
-import agregarIcon from '../../assets/icons/agregar-icon.svg';
-import imagenOvalo from '../../assets/img/imagen-ovalo.png';
-import {
-  getUserByNameAndAvatar,
-  getUserPublic,
-} from '../../services/infousuario';
-import userLoggedReducer, {
-  userLoggedInitial,
-} from '../../reducers/userLoggedReducer';
-import { AppContext } from '../../routes/Router';
-import { addLikeToPost } from '../../services/postsService';
 
-import jennieKim from '../../assets/img/jennie-kim.png';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+} from '@chakra-ui/react';
 
 import './home.scss';
 
 const Home = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [userInfo, setUserInfo] = useState([]);
   const [userPublic, setUserPublic] = useState([]);
 
-  const [state, dispatch] = useReducer(userLoggedReducer, userLoggedInitial);
   const {
-    userLogged: { userLogged },
+    userLogged: { userLogged, userLoggedDispatch },
   } = useContext(AppContext);
 
   const [comments, setComments] = useState([]);
@@ -163,12 +170,15 @@ const Home = () => {
                     />
                     <span>{publi.likes.length}</span>
                     <img
+                      // onClick={() => console.log(`ID: ${publi.userId}`)}
                       onClick={openModal}
+                      // onClick={onOpen}
                       className='container__publi__mensaje'
                       src={mensajeIcon}
                       alt=''
                     />
                     <span>0</span>
+
                     {isModalOpen && (
                       <div className='modal'>
                         <div className='modal-content'>
@@ -225,6 +235,39 @@ const Home = () => {
             ))}
           </ul>
         </section>
+
+        {/* Modal Comments */}
+
+        <Modal
+          scrollBehavior='inside'
+          closeOnOverlayClick={false}
+          size='sm'
+          isCentered
+          className='modalComments'
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Comments Section</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody className='modalBodyPost'>
+              {/*               <ul>
+                {publi.comments.map((comment, index) => (
+                  <>
+                    <li key={index}>{comment.contents}</li>
+                  </>
+                ))}
+              </ul> */}
+            </ModalBody>
+            <ModalFooter className='modalFooterComments'>
+              <Button className='saveCommentButton'>Save</Button>
+              <Button className='cancelButton' onClick={onClose}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </main>
     </>
   );
