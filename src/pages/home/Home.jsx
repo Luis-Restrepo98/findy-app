@@ -29,6 +29,7 @@ import {
 } from '@chakra-ui/react';
 
 import './home.scss';
+import { updateCommentsInPost } from '../../services/postService';
 
 const Home = () => {
   const {
@@ -38,13 +39,14 @@ const Home = () => {
 
   console.log('Post state from home:', postState);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [userInfo, setUserInfo] = useState([]);
   const [userPublic, setUserPublic] = useState([]);
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [clickeada, setClickeada] = useState([]);
@@ -92,10 +94,22 @@ const Home = () => {
     setNewComment(event.target.value);
   };
 
-  const addComment = () => {
+  const addComment = (userId, postId) => {
     if (newComment.trim() !== '') {
-      setComments([...comments, newComment]);
+      // setComments([...comments, newComment]);
+      console.log('Post ID:', postId);
+      console.log('User ID:', userId);
+      console.log('New Comment:', newComment);
+
+      const commentBody = {
+        userId: userId,
+        contents: newComment,
+      };
+
+      // updateCommentsInPost(postId, commentBody);
+
       setNewComment('');
+      closeModal();
     }
   };
 
@@ -185,7 +199,7 @@ const Home = () => {
                     />
                     <span>{publi.likes.length}</span>
                     <img
-                      // onClick={() => console.log(`ID: ${publi.userId}`)}
+                      // onClick={() => console.log(`Post ID: ${publi.id}`)}
                       onClick={openModal}
                       // onClick={onOpen}
                       className='container__publi__mensaje'
@@ -212,7 +226,9 @@ const Home = () => {
                             onChange={handleCommentChange}
                             placeholder='Agregar un comentario...'
                           />
-                          <button onClick={addComment}>
+                          <button
+                            onClick={() => addComment(publi.userId, publi.id)}
+                          >
                             Agregar Comentario
                           </button>
                         </div>
@@ -253,7 +269,7 @@ const Home = () => {
 
         {/* Modal Comments */}
 
-        <Modal
+        {/* <Modal
           scrollBehavior='inside'
           closeOnOverlayClick={false}
           size='sm'
@@ -267,13 +283,13 @@ const Home = () => {
             <ModalHeader>Comments Section</ModalHeader>
             <ModalCloseButton />
             <ModalBody className='modalBodyPost'>
-              {/*               <ul>
+              <ul>
                 {publi.comments.map((comment, index) => (
                   <>
                     <li key={index}>{comment.contents}</li>
                   </>
                 ))}
-              </ul> */}
+              </ul>
             </ModalBody>
             <ModalFooter className='modalFooterComments'>
               <Button className='saveCommentButton'>Save</Button>
@@ -282,7 +298,7 @@ const Home = () => {
               </Button>
             </ModalFooter>
           </ModalContent>
-        </Modal>
+        </Modal> */}
       </main>
     </>
   );
