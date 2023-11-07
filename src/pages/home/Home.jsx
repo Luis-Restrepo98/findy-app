@@ -43,6 +43,8 @@ const Home = () => {
   const [newComment, setNewComment] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [clickeada, setClickeada] = useState([]);
+
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
@@ -67,10 +69,19 @@ const Home = () => {
     };
 
     obtenerPublic();
-  }, [userPublic.likes]);
+  }, []);
 
-  const handleLike = id => {
-    addLikeToPost(id, userLogged.user.id);
+  const handleLike = async id => {
+    try {
+      await addLikeToPost(id, userLogged.user.id);
+      setClickeada(prevClickeada => [...prevClickeada, id]);
+      const updatedUserPublic = userPublic.map(publi =>
+        publi.id === id ? { ...publi, likes: publi.likes + 1 } : publi
+      );
+      setUserPublic(updatedUserPublic);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleCommentChange = event => {
@@ -114,19 +125,15 @@ const Home = () => {
         </header>
         <section className='container__estados'>
           <ul className='container__list'>
-            {userPublic.map((publi, index) => (
+            {userInfo.map((user, index) => (
               <li key={index} className='container__list__estados'>
-                {publi.content.map((photos, photoIndex) => (
-                  <img
-                    key={photoIndex}
-                    className='container__list__oval__estados1'
-                    src={photos.photo}
-                    alt=''
-                  />
-                ))}
-                <h3 className='container__list__nombre'>
-                  {userInfo.find(user => user.id === publi.userId)?.name}
-                </h3>
+                <img
+                  className='container__list__oval__estados1'
+                  src={user.profile.avatar}
+                  alt=''
+                />
+
+                <h3 className='container__list__nombre'>{user.name}</h3>
               </li>
             ))}
           </ul>
@@ -165,7 +172,11 @@ const Home = () => {
                     <img
                       onClick={() => handleLike(publi.id)}
                       className='container__publi__like'
-                      src={corazonIcon1}
+                      src={
+                        clickeada.includes(publi.id)
+                          ? corazonIconred
+                          : corazonIcon1
+                      }
                       alt=''
                     />
                     <span>{publi.likes.length}</span>
