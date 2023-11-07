@@ -10,6 +10,7 @@ import { addLikeToPost } from '../../services/postsService';
 
 import logoFindy from '../../assets/icons/logo-findy.svg';
 import corazonIcon1 from '../../assets/icons/corazon-icon1.svg';
+import corazonIconred from '../../assets/icons/corazon-iconred.svg';
 import mensajesIcon from '../../assets/icons/mensajes-icon.svg';
 import mensajeIcon from '../../assets/icons/mensaje-icon.svg';
 import compartirIcon from '../../assets/icons/compartir-icon.svg';
@@ -30,14 +31,17 @@ import {
 import './home.scss';
 
 const Home = () => {
+  const {
+    userLogged: { userLogged, userLoggedDispatch },
+    postReducerInfo: { postState, postDispatch },
+  } = useContext(AppContext);
+
+  console.log('Post state from home:', postState);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [userInfo, setUserInfo] = useState([]);
   const [userPublic, setUserPublic] = useState([]);
-
-  const {
-    userLogged: { userLogged, userLoggedDispatch },
-  } = useContext(AppContext);
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
@@ -56,7 +60,7 @@ const Home = () => {
     };
 
     obtenerDatos();
-  }, []);
+  }, [userLogged]);
 
   useEffect(() => {
     const obtenerPublic = async () => {
@@ -69,7 +73,7 @@ const Home = () => {
     };
 
     obtenerPublic();
-  }, []);
+  }, [postState]);
 
   const handleLike = async id => {
     try {
@@ -129,11 +133,11 @@ const Home = () => {
               <li key={index} className='container__list__estados'>
                 <img
                   className='container__list__oval__estados1'
-                  src={user.profile.avatar}
+                  src={userLogged.user.profile.avatar}
                   alt=''
                 />
 
-                <h3 className='container__list__nombre'>{user.name}</h3>
+                <h3 className='container__list__nombre'>{userLogged.name}</h3>
               </li>
             ))}
           </ul>

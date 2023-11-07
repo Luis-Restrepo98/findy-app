@@ -11,6 +11,7 @@ import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './publicRoutes';
 import Prueba from '../pages/prueba/Prueba';
 import Layout from '../components/layout/Layout';
+import postReducer, { postInitial } from '../reducers/postReducer';
 
 export const AppContext = createContext({});
 
@@ -20,10 +21,16 @@ const Router = () => {
     userLoggedInitial
   );
 
+  const [postState, postDispatch] = useReducer(postReducer, postInitial);
+
   const globalState = {
     userLogged: {
       userLogged,
       userLoggedDispatch,
+    },
+    postReducerInfo: {
+      postState,
+      postDispatch,
     },
   };
 

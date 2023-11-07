@@ -7,9 +7,9 @@ const userLoggedReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
-        isAuthenticated: true, 
-        user: action.payload.user
-      };      
+        isAuthenticated: true,
+        user: action.payload.user,
+      };
     case 'LOGOUT':
       return userLoggedInitial;
     case 'UPDATE':

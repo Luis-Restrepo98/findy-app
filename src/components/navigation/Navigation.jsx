@@ -30,6 +30,7 @@ import { sweetAlert } from '../../utils/alerts';
 const Navigation = () => {
   const {
     userLogged: { userLogged, userLoggedDispatch },
+    postReducerInfo: { postState, postDispatch },
   } = useContext(AppContext);
 
   console.log('From Navigation:', userLogged);
@@ -57,7 +58,7 @@ const Navigation = () => {
 
   const goToHome = () => navigate('/home');
 
-  const createPost = () => {
+  const createPost = async () => {
     const imageUrl = document.querySelector('.previewImage')?.src;
 
     if (!imageUrl.includes('camera-icon.svg')) {
@@ -73,8 +74,19 @@ const Navigation = () => {
         likes: [],
       };
 
-      createNewPost(postBody);
       setPostText('');
+
+      const newPost = await createNewPost(postBody);
+
+      const action = {
+        type: 'ADD_POST',
+        payload: {
+          newPost,
+        },
+      };
+      postDispatch(action);
+      console.log(postState);
+
       onPostClose();
     }
   };
