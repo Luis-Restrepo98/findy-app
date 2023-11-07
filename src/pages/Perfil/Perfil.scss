@@ -1,32 +1,43 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: "border-box";
+  box-sizing: 'border-box';
 }
+
+body {
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
 .contenedor__main {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
   margin: auto;
   width: 428px;
   height: 926px;
-  border-radius: 35px;
-  &__portada{
-    position:relative;
-    display:flex;
+  // border-radius: 35px;
+  &__portada {
+    position: relative;
+    display: flex;
     width: 428px;
     height: 227px;
-
   }
   &__imgPortada {
-    display:flex;
+    display: flex;
     width: 428px;
     height: 227px;
-    border-radius: 35px 35px 0px 0px;
+    // border-radius: 35px 35px 0px 0px;
   }
-  &__flecha{
+  &__flecha {
     position: absolute;
     width: 190px;
     height: 36px;
-    margin-top:40px;
-    margin-left:20px;
+    margin-top: 40px;
+    margin-left: 20px;
     width: 12px;
     height: 24px;
   }
@@ -34,12 +45,14 @@
     position: absolute;
   }
   &__background {
+    position: relative;
     height: 700px;
     background-color: #f6c4c3;
     margin-top: -5px;
     border-radius: 0px 0px 35px 35px;
   }
   &__imgPerfil {
+    // position: absolute;
     width: 72px;
     height: 72px;
     margin-top: -38px;
@@ -62,7 +75,6 @@
     font-weight: 700;
     line-height: 19px;
     letter-spacing: 0em;
- 
   }
   &__description {
     width: 200px;
@@ -72,7 +84,6 @@
     font-size: 12px;
     font-weight: 400;
     text-align: center;
-   
   }
 
   &__FollowLike {
@@ -82,7 +93,7 @@
   &__contenFollow {
     width: 20%;
     line-height: 50px;
-    margin-top:5px;
+    margin-top: 5px;
     text-align: center;
   }
   &__followers {
@@ -145,7 +156,7 @@
   }
   &__contenedorFollow {
     display: flex;
-    margin-top:10px;
+    margin-top: 10px;
   }
 
   &__buttonFollow {
@@ -187,22 +198,22 @@
     color: white;
   }
   &__contenedorInfo {
-    display: flex;
-    height: 541px;
+    // display: flex;
+    // height: 541px;
     margin-top: 8px;
+    padding-bottom: 50px;
     border-radius: 30px;
     background: white;
   }
-  
-  &__contenedor{
+
+  &__contenedor {
     display: flex;
     gap: 30px;
     margin-top: 10px;
     margin-left: 20px;
-    :hover{
+    :hover {
       border-bottom: 2px solid #ff7674;
     }
-
   }
   &__contenedorButton {
     display: flex;
@@ -217,13 +228,11 @@
     text-align: left;
     border: none;
     background: white;
-
   }
-  &__contenedorPhoto{
+  &__contenedorPhoto {
     display: flex;
     margin-top: 500px;
     margin-left: -430px;
-    ;
   }
   &__rosado {
     display: flex;
@@ -248,7 +257,6 @@
     margin-top: -20px;
     margin-left: 16px;
     border-radius: 10px 10px 10px 10px;
-
   }
   &__morado {
     display: flex;
@@ -258,12 +266,11 @@
     margin-left: 220px;
     border-radius: 10px 10px 10px 10px;
   }
-  &__perfilVideos{
+  &__perfilVideos {
     display: flex;
     margin-top: 60px;
     margin-left: 450px;
     gap: 10px;
-
   }
   &__video1 {
     display: flex;
@@ -280,7 +287,6 @@
     border-radius: 10px 10px 10px 10px;
   }
 
-
   &__video3 {
     display: flex;
     width: 190px;
@@ -290,5 +296,22 @@
     border-radius: 10px 10px 10px 10px;
   }
 
-}
+  .photosContainer {
+    // overflow-y: scroll;
+    margin-top: -480px;
+    margin-left: 430px;
+    display: flex;
+    gap: 5px;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    // justify-content: space-evenly;
 
+    img {
+      display: flex;
+      width: 190px;
+      height: 190px;
+      margin-left: 16px;
+      border-radius: 10px;
+    }
+  }
+}
