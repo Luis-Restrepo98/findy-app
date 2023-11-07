@@ -133,11 +133,11 @@ const Home = () => {
               <li key={index} className='container__list__estados'>
                 <img
                   className='container__list__oval__estados1'
-                  src={userLogged.user.profile.avatar}
+                  src={user.profile.avatar}
                   alt=''
                 />
 
-                <h3 className='container__list__nombre'>{userLogged.name}</h3>
+                <h3 className='container__list__nombre'>{user.name}</h3>
               </li>
             ))}
           </ul>
