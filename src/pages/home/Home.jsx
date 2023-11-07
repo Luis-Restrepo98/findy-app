@@ -30,6 +30,7 @@ import {
 
 import './home.scss';
 import { updateCommentsInPost } from '../../services/postService';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const {
@@ -41,6 +42,7 @@ const Home = () => {
 
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState([]);
   const [userPublic, setUserPublic] = useState([]);
 
@@ -171,7 +173,10 @@ const Home = () => {
                       alt=''
                     />
                   }
-                  <h1 className='container__publi__nombre__perfil'>
+                  <h1
+                    onClick={() => navigate(`/profile/${publi.userId}`)}
+                    className='container__publi__nombre__perfil'
+                  >
                     {userInfo.find(user => user.id === publi.userId)?.name}
                   </h1>
                 </div>

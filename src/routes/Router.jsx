@@ -12,6 +12,7 @@ import PublicRoutes from './publicRoutes';
 import Prueba from '../pages/prueba/Prueba';
 import Layout from '../components/layout/Layout';
 import postReducer, { postInitial } from '../reducers/postReducer';
+import Perfil from '../pages/Perfil/Perfil';
 
 export const AppContext = createContext({});
 
@@ -48,6 +49,7 @@ const Router = () => {
                 <Route index element={<Home />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/prueba' element={<Prueba />} />
+                <Route path='/profile/:id' element={<Perfil />} />
               </Route>
             </Route>
             <Route
