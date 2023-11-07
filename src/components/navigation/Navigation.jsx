@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UploadWidget from '../../components/uploadWidget/UploadWidget';
 import { createNewPost } from '../../services/postService';
@@ -22,7 +22,6 @@ import cruzIcon from '../../assets/icons/cruz-icon.svg';
 import casaIcon from '../../assets/icons/casa-icon.svg';
 import lupaIcon from '../../assets/icons/lupa-icon.svg';
 import campanaIcon from '../../assets/icons/campana-icon.svg';
-import userIcon from '../../assets/icons/user-icon.svg';
 
 import './navigation.scss';
 import { updateUser } from '../../services/userService';
@@ -38,7 +37,6 @@ const Navigation = () => {
   const navigate = useNavigate();
 
   const [postText, setPostText] = useState('');
-  const [userInfo, setUserInfo] = useState([]);
 
   const [profileInformation, setProfileInformation] = useState({
     username: userLogged.user.name,
@@ -126,17 +124,12 @@ const Navigation = () => {
         />
         <img src={lupaIcon} alt='lupaIcon' className='lupaIcon' />
         <img src={campanaIcon} alt='campanaIcon' className='campanaIcon' />
-        {userInfo.map((user, index) =>
-          user.id === userLogged.user.id ? (
-            <img
-              key={index}
-              src={user.profile.avatar}
-              alt='userIcon'
-              className='userIcon'
-              onClick={onEditProfileOpen}
-            />
-          ) : null
-        )}
+        <img
+          src={userLogged.user.profile.avatar}
+          alt='userIcon'
+          className='userIcon'
+          onClick={onEditProfileOpen}
+        />
       </div>
 
       <div className='newPostButton'>
