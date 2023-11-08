@@ -1,6 +1,6 @@
-const URL_BASE = 'https://app-findy-services.onrender.com/';
+const URL_BASE = "https://app-findy-services.onrender.com/";
 
-const endpoints = {
+const endpoinst = {
   users: `${URL_BASE}users`,
   user: (email, password) =>
     `${URL_BASE}users?email=${email}&&password=${password}`,
@@ -8,4 +8,4 @@ const endpoints = {
   userById: id => `${URL_BASE}users/${id}`,
 };
 
-export default endpoints;
+export default endpoinst;

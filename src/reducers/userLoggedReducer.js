@@ -3,12 +3,17 @@ export const userLoggedInitial = {
   user: null,
 };
 
-const userLoggedReducer = (state = userLoggedInitial, action) => {
+const userLoggedReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
-      return action.payload;
+      return {
+        isAuthenticated: true,
+        user: action.payload.user,
+      };
     case 'LOGOUT':
       return userLoggedInitial;
+    case 'UPDATE':
+      return { ...state, ...action.payload };
     default:
       return state;
   }

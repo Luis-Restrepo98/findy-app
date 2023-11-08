@@ -22,17 +22,16 @@ import cruzIcon from '../../assets/icons/cruz-icon.svg';
 import casaIcon from '../../assets/icons/casa-icon.svg';
 import lupaIcon from '../../assets/icons/lupa-icon.svg';
 import campanaIcon from '../../assets/icons/campana-icon.svg';
-import userIcon from '../../assets/icons/user-icon.svg';
 
 import './navigation.scss';
 import { updateUser } from '../../services/userService';
+import { sweetAlert } from '../../utils/alerts';
 
 const Navigation = () => {
   const {
-    userLogged: { userLogged },
+    userLogged: { userLogged, userLoggedDispatch },
+    postReducerInfo: { postState, postDispatch },
   } = useContext(AppContext);
-
-  console.log('From Navigation:', userLogged);
 
   const navigate = useNavigate();
 
@@ -57,7 +56,7 @@ const Navigation = () => {
 
   const goToHome = () => navigate('/home');
 
-  const createPost = () => {
+  const createPost = async () => {
     const imageUrl = document.querySelector('.previewImage')?.src;
 
     if (!imageUrl.includes('camera-icon.svg')) {
@@ -73,13 +72,23 @@ const Navigation = () => {
         likes: [],
       };
 
-      createNewPost(postBody);
       setPostText('');
+
+      const newPost = await createNewPost(postBody);
+
+      const action = {
+        type: 'ADD_POST',
+        payload: {
+          newPost,
+        },
+      };
+      postDispatch(action);
+
       onPostClose();
     }
   };
 
-  const editProfile = () => {
+  const editProfile = async () => {
     const imageUrl = document.querySelector('.previewImage')?.src;
 
     const editBody = {
@@ -90,8 +99,21 @@ const Navigation = () => {
       },
     };
 
-    // console.log(editBody);
-    updateUser(userLogged.user.id, editBody);
+    const userUpdated = await updateUser(userLogged.user.id, editBody);
+
+    if (userUpdated) {
+      const action = {
+        type: 'UPDATE',
+        payload: {
+          isAuthenticated: true,
+          user: userUpdated,
+        },
+      };
+      userLoggedDispatch(action);
+    } else {
+      sweetAlert('error', 'There was an unexpected error');
+    }
+
     onEditProfileClose();
   };
 
@@ -112,7 +134,7 @@ const Navigation = () => {
         <img src={lupaIcon} alt='lupaIcon' className='lupaIcon' />
         <img src={campanaIcon} alt='campanaIcon' className='campanaIcon' />
         <img
-          src={userIcon}
+          src={userLogged.user.profile.avatar}
           alt='userIcon'
           className='userIcon'
           onClick={onEditProfileOpen}

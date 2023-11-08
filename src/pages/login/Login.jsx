@@ -42,7 +42,7 @@ const Login = () => {
         },
       };
       userLoggedDispatch(action);
-      console.log('From Login:', userLogged);
+      // console.log('From Login:', userLogged);
       sweetAlert('success', `Welcome back ${userFound.name}`);
     } else {
       sweetAlert('error', 'Wrong credentials');

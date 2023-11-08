@@ -1,0 +1,317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 'border-box';
+}
+
+body {
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.contenedor__main {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  margin: auto;
+  width: 428px;
+  height: 926px;
+  // border-radius: 35px;
+  &__portada {
+    position: relative;
+    display: flex;
+    width: 428px;
+    height: 227px;
+  }
+  &__imgPortada {
+    display: flex;
+    width: 428px;
+    height: 227px;
+    // border-radius: 35px 35px 0px 0px;
+  }
+  &__flecha {
+    position: absolute;
+    width: 190px;
+    height: 36px;
+    margin-top: 40px;
+    margin-left: 20px;
+    width: 12px;
+    height: 24px;
+  }
+  &__span {
+    position: absolute;
+  }
+  &__background {
+    position: relative;
+    height: 700px;
+    background-color: #f6c4c3;
+    margin-top: -5px;
+    border-radius: 0px 0px 35px 35px;
+  }
+  &__imgPerfil {
+    // position: absolute;
+    width: 72px;
+    height: 72px;
+    margin-top: -38px;
+    margin-left: 178px;
+    border: 1px solid #ff7674;
+    border-radius: 50%;
+  }
+
+  &__textDescription {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  &__name {
+    width: 200px;
+    height: 19px;
+    margin-left: 175px;
+    font-family: Balsamiq Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+  }
+  &__description {
+    width: 200px;
+    height: 15px;
+    margin-left: 120px;
+    font-family: Balsamiq Sans;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &__FollowLike {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__contenFollow {
+    width: 20%;
+    line-height: 50px;
+    margin-top: 5px;
+    text-align: center;
+  }
+  &__followers {
+    width: 70px;
+    height: 14px;
+    margin-top: 5px;
+    margin-left: 50px;
+    font-family: Balsamiq Sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  &__millonFollow {
+    display: flex;
+    width: 60px;
+    height: 19px;
+    margin-top: 5px;
+    margin-left: 50px;
+    font-family: Balsamiq Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  &__contenLike {
+    width: 20%;
+    line-height: 50px;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  &__numberLikes {
+    display: flex;
+    width: 60px;
+    height: 19px;
+    margin-top: 5px;
+    margin-left: 0px;
+    font-family: Balsamiq Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  &__Likes {
+    display: flex;
+    width: 29px;
+    height: 14px;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-family: Balsamiq Sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  &__contenedorFollow {
+    display: flex;
+    margin-top: 10px;
+  }
+
+  &__buttonFollow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 190px;
+    height: 35px;
+    margin-top: 15px;
+    margin-left: 20px;
+    border-radius: 10px;
+    background-color: #eb5e5c;
+    border: none;
+    font-family: Balsamiq Sans;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+  }
+  &__buttonMessages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 190px;
+    height: 35px;
+    margin-top: 15px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #eb5e5c;
+    border: none;
+    font-family: Balsamiq Sans;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+  }
+  &__contenedorInfo {
+    // display: flex;
+    // height: 541px;
+    margin-top: 8px;
+    padding-bottom: 50px;
+    border-radius: 30px;
+    background: white;
+  }
+
+  &__contenedor {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+    margin-left: 20px;
+    :hover {
+      border-bottom: 2px solid #ff7674;
+    }
+  }
+  &__contenedorButton {
+    display: flex;
+    justify-content: center;
+    width: 60px;
+    height: 20px;
+    font-family: Balsamiq Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    border: none;
+    background: white;
+  }
+  &__contenedorPhoto {
+    display: flex;
+    margin-top: 500px;
+    margin-left: -430px;
+  }
+  &__rosado {
+    display: flex;
+    width: 190px;
+    height: 190px;
+    margin-top: -450px;
+    margin-left: 16px;
+    border-radius: 10px 10px 10px 10px;
+  }
+  &__azul {
+    display: flex;
+    width: 190px;
+    height: 213px;
+    margin-top: -190px;
+    margin-left: 220px;
+    border-radius: 10px 10px 10px 10px;
+  }
+  &__gris {
+    display: flex;
+    width: 190px;
+    height: 198px;
+    margin-top: -20px;
+    margin-left: 16px;
+    border-radius: 10px 10px 10px 10px;
+  }
+  &__morado {
+    display: flex;
+    width: 190px;
+    height: 204px;
+    margin-top: -170px;
+    margin-left: 220px;
+    border-radius: 10px 10px 10px 10px;
+  }
+  &__perfilVideos {
+    display: flex;
+    margin-top: 60px;
+    margin-left: 450px;
+    gap: 10px;
+  }
+  &__video1 {
+    display: flex;
+    width: 190px;
+    height: 190px;
+    margin-top: -500px;
+    border-radius: 10px 10px 10px 10px;
+  }
+  &__video2 {
+    display: flex;
+    width: 190px;
+    height: 213px;
+    margin-top: -500px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  &__video3 {
+    display: flex;
+    width: 190px;
+    height: 204px;
+    margin-top: -290px;
+    margin-left: -400px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .photosContainer {
+    // overflow-y: scroll;
+    margin-top: -480px;
+    margin-left: 430px;
+    display: flex;
+    gap: 5px;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    // justify-content: space-evenly;
+
+    img {
+      display: flex;
+      width: 190px;
+      height: 190px;
+      margin-left: 16px;
+      border-radius: 10px;
+    }
+  }
+}

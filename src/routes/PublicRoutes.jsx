@@ -7,3 +7,4 @@ const PublicRoutes = ({ isAuthenticate, redirectPath = '/home', children }) => {
 };
 
 export default PublicRoutes;
+ 
