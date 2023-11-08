@@ -173,41 +173,6 @@ const Perfil = () => {
                 <></>
               )}
             </div>
-            {/*  <div className='contenedor__main__contenedorPhoto'>
-              {perfil === 'VIDEOS' ? (
-                <>
-                  <div className='contenedor__main__perfilVideos'>
-                    {perfil === 'VIDEOS' ? (
-                      <img
-                        className='contenedor__main__video1'
-                        src={profile?.photo[0].img1}
-                        alt=''
-                      />
-                    ) : (
-                      <></>
-                    )}
-                    {perfil === 'VIDEOS' ? (
-                      <img
-                        className='contenedor__main__video2'
-                        src={profile?.photo[1].img2}
-                      />
-                    ) : (
-                      <></>
-                    )}
-                    {perfil === 'VIDEOS' ? (
-                      <img
-                        className='contenedor__main__video3'
-                        src={profile?.photo[2].img4}
-                      />
-                    ) : (
-                      <></>
-                    )}
-                  </div>{' '}
-                </>
-              ) : (
-                <></>
-              )}
-            </div> */}
           </div>
         </section>
       </main>
