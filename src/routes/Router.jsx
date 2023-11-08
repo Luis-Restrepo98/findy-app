@@ -37,7 +37,7 @@ const Router = () => {
   return (
     <AppContext.Provider value={globalState}>
       <ChakraProvider>
-        <BrowserRouter>
+        <BrowserRouter basename='/findy-app'>
           <Routes>
             <Route
               element={
