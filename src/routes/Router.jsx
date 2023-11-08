@@ -8,7 +8,7 @@ import userLoggedReducer, {
   userLoggedInitial,
 } from '../reducers/userLoggedReducer';
 import PrivateRoutes from './PrivateRoutes';
-import PublicRoutes from './publicRoutes';
+import PublicRoutes from './PublicRoutes';
 import Layout from '../components/layout/Layout';
 import postReducer, { postInitial } from '../reducers/postReducer';
 import Perfil from '../pages/Perfil/Perfil';
